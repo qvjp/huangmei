@@ -43,3 +43,18 @@ add_custom_command(
     COMMENT "Running Huangmei in qemu"
     COMMAND qemu-system-i386 -cdrom Huangmei.iso -curses
 )
+
+add_custom_target(generate-symbol)
+add_custom_command(
+    TARGET generate-symbol
+    COMMENT "Generate symbol for debug"
+    COMMAND i686-elf-objcopy --only-keep-debug ${CMAKE_BINARY_DIR}/kernel/kernel.elf $(CMAKE_BINARY_DIR)/kernel.sym
+    COMMAND i686-elf-objcopy --strip-debug ${CMAKE_BINARY_DIR}/kernel/kernel.elf
+)
+
+add_custom_target(qemu-debug DEPENDS image)
+add_custom_command(
+    TARGET qemu-debug
+    COMMENT "Debug Huangmei in qemu"
+    COMMAND qemu-system-i386 -cdrom Huangmei.iso -s -S
+)
