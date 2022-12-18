@@ -17,29 +17,29 @@ add_subdirectory(kernel)
 
 add_custom_target(image)
 add_custom_command(
-        TARGET image
-        COMMAND mkdir -p ${CMAKE_BINARY_DIR}/iso
-        COMMAND cp -r ${CMAKE_SOURCE_DIR}/meta/boot ${CMAKE_BINARY_DIR}/iso
-        COMMAND cp ${CMAKE_BINARY_DIR}/kernel/kernel.elf ${CMAKE_BINARY_DIR}/iso
-        COMMAND grub-mkrescue -o Huangmei.iso ${CMAKE_BINARY_DIR}/iso
+    TARGET image
+    COMMAND mkdir -p ${CMAKE_BINARY_DIR}/iso
+    COMMAND cp -r ${CMAKE_SOURCE_DIR}/meta/boot ${CMAKE_BINARY_DIR}/iso
+    COMMAND cp ${CMAKE_BINARY_DIR}/kernel/kernel.elf ${CMAKE_BINARY_DIR}/iso
+    COMMAND grub-mkrescue -o Huangmei.iso ${CMAKE_BINARY_DIR}/iso
 )
 
 add_custom_target(install-toolchain)
 add_custom_command(
-        TARGET install-toolchain
-        COMMAND bash ${CMAKE_SOURCE_DIR}/meta/cross/install-toolchain.sh
+    TARGET install-toolchain
+    COMMAND bash ${CMAKE_SOURCE_DIR}/meta/cross/install-toolchain.sh
 )
 
 add_custom_target(qemu DEPENDS image)
 add_custom_command(
-        TARGET qemu
-        COMMENT "Running Huangmei in qemu"
-        COMMAND qemu-system-i386 -cdrom Huangmei.iso
+    TARGET qemu
+    COMMENT "Running Huangmei in qemu"
+    COMMAND qemu-system-i386 -cdrom Huangmei.iso
 )
 
 add_custom_target(qemu-curses DEPENDS image)
 add_custom_command(
-        TARGET qemu-curses
-        COMMENT "Running Huangmei in qemu"
-        COMMAND qemu-system-i386 -cdrom Huangmei.iso -curses
+    TARGET qemu-curses
+    COMMENT "Running Huangmei in qemu"
+    COMMAND qemu-system-i386 -cdrom Huangmei.iso -curses
 )
