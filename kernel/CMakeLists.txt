@@ -4,11 +4,13 @@ set(CMAKE_EXE_LINKER_FLAGS "-T ${CMAKE_CURRENT_SOURCE_DIR}/linker.ld -ffreestand
 ENABLE_LANGUAGE(ASM)
 
 include_directories(
-        ${CMAKE_CURRENT_SOURCE_DIR}/include)
+    ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 set(SOURCE_FILES
-        src/arch/i686/start.S
-        src/kernel.c
-        src/log.c)
+    src/arch/i686/start.S
+    src/kernel.c
+    src/log.c
+    src/terminal.c
+)
 
 add_executable(kernel.elf ${SOURCE_FILES})
