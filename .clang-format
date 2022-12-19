@@ -5,3 +5,4 @@ DerivePointerAlignment: false
 PointerAlignment: Right
 ColumnLimit: 120
 AllowShortFunctionsOnASingleLine: Empty
+AlignConsecutiveMacros: true

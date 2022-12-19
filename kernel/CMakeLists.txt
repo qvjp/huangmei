@@ -7,10 +7,12 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 set(SOURCE_FILES
+    src/arch/i686/gdt.S
     src/arch/i686/start.S
+    src/arch/i686/gdt.c
     src/kernel.c
     src/log.c
     src/terminal.c
-)
+    )
 
 add_executable(kernel.elf ${SOURCE_FILES})
