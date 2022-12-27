@@ -41,6 +41,8 @@ void terminal_scroll() {
             }
         }
     }
+
+    terminal_y--;
 }
 
 static void terminal_putchar(char c) {
