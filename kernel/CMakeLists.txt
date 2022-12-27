@@ -8,8 +8,13 @@ include_directories(
 
 set(SOURCE_FILES
     src/arch/i686/gdt.S
+    src/arch/i686/idt.S
+    src/arch/i686/interrupt.S
     src/arch/i686/start.S
     src/arch/i686/gdt.c
+    src/arch/i686/idt.c
+    src/arch/i686/irq.c
+    src/arch/i686/isr.c
     src/kernel.c
     src/log.c
     src/terminal.c
